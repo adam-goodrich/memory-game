@@ -2,9 +2,15 @@ function Cards(props) {
   return (
     <div className="container mt-3 mb-5">
       <div className="row">
-        {props.cards.map((item, index) => {
+        {props.cards.map((_, index) => {
           return (
-            <div className="col-sm-3 col-6 d-flex align-items-stretch">
+            <div
+              key={`card-${index}`}
+              id={props.cards[index].name}
+              className="col-sm-3 col-6 d-flex align-items-stretch"
+              onClick={() => {
+                props.clickedDog(props.cards[index].name);
+              }}>
               <div className="card mt-3">
                 <img
                   src={props.cards[index].img}

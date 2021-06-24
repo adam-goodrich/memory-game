@@ -1,5 +1,5 @@
 function HighScore(props) {
-  return <div>High Score: {props.highScore}</div>;
+  return <div className="m-1">High Score: {props.highScore}</div>;
 }
 
 export default HighScore;
