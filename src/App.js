@@ -18,22 +18,11 @@ function App() {
       }
     };
 
-    // const randomCards = shuffle(cards);
-
     highScoreUpdater();
-    // setCards(randomCards);
-  }, [highScore, score, cards]);
-
-  const scoreIncrease = () => {
-    setScore(score + 1);
-  };
-
-  const resetScore = () => {
-    setScore(0);
-  };
+  }, [highScore, score, cards, chosenDogs]);
 
   const shuffle = (array) => {
-    var currentIndex = array.length,
+    let currentIndex = array.length,
       randomIndex;
 
     // While there remain elements to shuffle...
@@ -53,6 +42,8 @@ function App() {
   };
 
   const clickedDog = (dogName) => {
+    const randomCards = shuffle(cards);
+    setCards(randomCards);
     if (chosenDogs.filter((e) => e === dogName).length > 0) {
       console.log("Already Clicked! You Lose");
       setScore(0);
@@ -61,9 +52,9 @@ function App() {
     } else {
       setChosenDogs(chosenDogs.concat(dogName));
       setScore(score + 1);
+      let newCards = [...cards];
+      setCards(newCards.filter((val) => val.name !== dogName));
     }
-    const randomCards = shuffle(cards);
-    setCards(randomCards);
   };
 
   return (
@@ -74,8 +65,6 @@ function App() {
           <CurrentScore score={score} />
           <HighScore highScore={highScore} />
         </div>
-        <button onClick={scoreIncrease}>increase score</button>
-        <button onClick={resetScore}>reset score</button>
       </div>
       <Cards cards={cards} clickedDog={clickedDog} />
     </div>

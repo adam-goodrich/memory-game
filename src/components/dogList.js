@@ -6,6 +6,9 @@ import poodle from "/Users/agoodrich/Desktop/Programming/memory-game/src/images/
 import chihuahua from "/Users/agoodrich/Desktop/Programming/memory-game/src/images/chihuahua.jpeg";
 import pomeranian from "/Users/agoodrich/Desktop/Programming/memory-game/src/images/pomeranian.jpeg";
 import greatDane from "/Users/agoodrich/Desktop/Programming/memory-game/src/images/greatDane.jpeg";
+import dachshund from "/Users/agoodrich/Desktop/Programming/memory-game/src/images/dachshund.jpeg";
+import rottweiler from "/Users/agoodrich/Desktop/Programming/memory-game/src/images/rottweiler.jpeg";
+import frenchBulldog from "/Users/agoodrich/Desktop/Programming/memory-game/src/images/frenchBulldog.jpeg";
 
 const dogList = [
   {
@@ -39,6 +42,18 @@ const dogList = [
   {
     img: poodle,
     name: "Poodle",
+  },
+  {
+    img: dachshund,
+    name: "Dachshund",
+  },
+  {
+    img: rottweiler,
+    name: "Rottweiler",
+  },
+  {
+    img: frenchBulldog,
+    name: "French Bulldog",
   },
 ];
 
