@@ -13,7 +13,7 @@ function App() {
   const [alreadyClicked, setAlreadyClicked] = useState([]);
   const [cardsInPlay, setCardsInPlay] = useState(dogList);
   const [lost, setLost] = useState(false);
-  const [win, setWin] = useState(false);
+  const [win, setWin] = useState(true);
   const [savedScore, setSavedScore] = useState(0);
   const [startGame, setStartGame] = useState(false);
   const [lastClickedDog, setLastClickedDog] = useState("");

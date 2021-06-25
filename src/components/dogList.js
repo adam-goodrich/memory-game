@@ -17,6 +17,17 @@ import newfoundlandDog from "../images/newfoundlandDog.jpeg";
 import stBernard from "../images/stBernard.jpeg";
 import husky from "../images/husky.jpeg";
 import dalmatian from "../images/dalmatian.jpeg";
+import bullTerrier from "../images/bullTerrier.jpeg";
+import sharPei from "../images/sharPei.jpeg";
+import bassetHound from "../images/bassetHound.jpeg";
+import greyhound from "../images/greyhound.jpeg";
+import redboneCoonhound from "../images/redboneCoonhound.jpeg";
+import doberman from "../images/doberman.jpeg";
+import pittBull from "../images/pittBull.jpeg";
+import borderCollie from "../images/borderCollie.jpeg";
+import bostonTerrier from "../images/bostonTerrier.jpeg";
+import beagle from "../images/beagle.jpeg";
+import pug from "../images/pug.jpeg";
 
 const dogList = [
   {
@@ -94,6 +105,50 @@ const dogList = [
   {
     img: dalmatian,
     name: "Dalmatian",
+  },
+  {
+    img: bullTerrier,
+    name: "Bull Terrier",
+  },
+  {
+    img: sharPei,
+    name: "Shar Pei",
+  },
+  {
+    img: bassetHound,
+    name: "Basset Hound",
+  },
+  {
+    img: greyhound,
+    name: "Greyhound",
+  },
+  {
+    img: redboneCoonhound,
+    name: "Redbone Coonhound",
+  },
+  {
+    img: doberman,
+    name: "Doberman",
+  },
+  {
+    img: pittBull,
+    name: "Pitt Bull",
+  },
+  {
+    img: borderCollie,
+    name: "Border Collie",
+  },
+  {
+    img: bostonTerrier,
+    name: "Boston Terrier",
+  },
+  {
+    img: beagle,
+    name: "Beagle",
+  },
+  {
+    img: pug,
+    name: "Pug",
   },
 ];
 

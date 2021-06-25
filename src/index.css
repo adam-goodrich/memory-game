@@ -16,6 +16,7 @@ code {
 .card:hover {
   transform: scale(1.03);
   cursor: pointer;
+  box-shadow: 5px 7px rgb(97, 97, 97);
 }
 
 .card {
@@ -29,6 +30,7 @@ code {
   width: 100%;
   height: 15vw;
   object-fit: cover;
+  border-bottom: 1px solid black;
 }
 
 .outline {
