@@ -17,7 +17,11 @@ function Cards(props) {
               You already clicked {props.lastClickedDog}.
             </h2>
             <h2 className="mt-5">Your score was {props.savedScore}.</h2>
-            <h2>Can you beat the high score of {props.highScore}?</h2>
+            <h2>
+              {props.savedScore === props.highScore
+                ? "New High Score!"
+                : `Can you beat the high score of ${props.highScore}?`}
+            </h2>
             <div className="container mt-5 mb-5">
               <button
                 className="btn btn-primary btn-lg"
@@ -72,7 +76,7 @@ function Cards(props) {
     );
   } else {
     return (
-      <div className="container mt-3 mb-5">
+      <div className="container mb-5">
         <div className="row">
           {props.cardsInPlay.map((_, index) => {
             while (index <= 11) {
@@ -80,7 +84,7 @@ function Cards(props) {
                 <div
                   key={`card-${index}`}
                   id={props.cardsInPlay[index].name}
-                  className="col-xl-2 col-lg-3 col-6 d-flex align-items-stretch"
+                  className="col-xl-2 col-md-3 col-6 d-flex align-items-stretch "
                   onClick={() => {
                     props.clickedDog(props.cardsInPlay[index].name);
                   }}>

@@ -1,19 +1,22 @@
-import bulldog from "/Users/agoodrich/Desktop/Programming/memory-game/src/images/bulldog.jpeg";
-import corgi from "/Users/agoodrich/Desktop/Programming/memory-game/src/images/corgi.jpeg";
-import germanShepherd from "/Users/agoodrich/Desktop/Programming/memory-game/src/images/germanShepherd.jpeg";
-import labrador from "/Users/agoodrich/Desktop/Programming/memory-game/src/images/labrador.jpg";
-import poodle from "/Users/agoodrich/Desktop/Programming/memory-game/src/images/poodle.jpg";
-import chihuahua from "/Users/agoodrich/Desktop/Programming/memory-game/src/images/chihuahua.jpeg";
-import pomeranian from "/Users/agoodrich/Desktop/Programming/memory-game/src/images/pomeranian.jpeg";
-import greatDane from "/Users/agoodrich/Desktop/Programming/memory-game/src/images/greatDane.jpeg";
-import dachshund from "/Users/agoodrich/Desktop/Programming/memory-game/src/images/dachshund.jpeg";
-import rottweiler from "/Users/agoodrich/Desktop/Programming/memory-game/src/images/rottweiler.jpeg";
-import frenchBulldog from "/Users/agoodrich/Desktop/Programming/memory-game/src/images/frenchBulldog.jpeg";
-import shibaInu from "/Users/agoodrich/Desktop/Programming/memory-game/src/images/shibaInu.jpeg";
-import chowChow from "/Users/agoodrich/Desktop/Programming/memory-game/src/images/chowChow.jpeg";
-import shihTzu from "/Users/agoodrich/Desktop/Programming/memory-game/src/images/shihTzu.jpeg";
-import samoyed from "/Users/agoodrich/Desktop/Programming/memory-game/src/images/samoyed.jpeg";
-import newfoundlandDog from "/Users/agoodrich/Desktop/Programming/memory-game/src/images/newfoundlandDog.jpeg";
+import bulldog from "../images/bulldog.jpeg";
+import corgi from "../images/corgi.jpeg";
+import germanShepherd from "../images/germanShepherd.jpeg";
+import labrador from "../images/labrador.jpeg";
+import poodle from "../images/poodle.jpg";
+import chihuahua from "../images/chihuahua.jpeg";
+import pomeranian from "../images/pomeranian.jpeg";
+import greatDane from "../images/greatDane.jpeg";
+import dachshund from "../images/dachshund.jpeg";
+import rottweiler from "../images/rottweiler.jpeg";
+import frenchBulldog from "../images/frenchBulldog.jpeg";
+import shibaInu from "../images/shibaInu.jpeg";
+import chowChow from "../images/chowChow.jpeg";
+import shihTzu from "../images/shihTzu.jpeg";
+import samoyed from "../images/samoyed.jpeg";
+import newfoundlandDog from "../images/newfoundlandDog.jpeg";
+import stBernard from "../images/stBernard.jpeg";
+import husky from "../images/husky.jpeg";
+import dalmatian from "../images/dalmatian.jpeg";
 
 const dogList = [
   {
@@ -79,6 +82,18 @@ const dogList = [
   {
     img: newfoundlandDog,
     name: "Newfoundland Dog",
+  },
+  {
+    img: stBernard,
+    name: "St. Bernard",
+  },
+  {
+    img: husky,
+    name: "Husky",
+  },
+  {
+    img: dalmatian,
+    name: "Dalmatian",
   },
 ];
 

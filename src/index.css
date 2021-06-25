@@ -5,7 +5,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: rgb(139, 184, 143);
+  background-color: #5bc0de;
 }
 
 code {
@@ -16,6 +16,12 @@ code {
 .card:hover {
   transform: scale(1.03);
   cursor: pointer;
+}
+
+.card {
+  min-width: 170px;
+  border: 1px solid black;
+  box-shadow: 3px 5px rgb(97, 97, 97);
 }
 
 .card-img-top {

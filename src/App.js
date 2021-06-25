@@ -101,11 +101,15 @@ function App() {
 
   if (startGame) {
     return (
-      <div className="App">
-        <div className="container" style={{ width: "200px" }}>
-          <div className="mt-4">
-            <CurrentScore score={score} />
-            <HighScore highScore={highScore} />
+      <div className="App ">
+        <div className="container row m-1 mt-3 ">
+          <div
+            className="alert alert-warning outline"
+            style={{ height: "fit-content", width: "fit-content" }}>
+            <div className="mt">
+              <CurrentScore score={score} />
+              <HighScore highScore={highScore} />
+            </div>
           </div>
         </div>
         <Cards
@@ -141,8 +145,9 @@ function App() {
               <h1 className="mt-5">Never Forget a Dog!</h1>
 
               <h2 className="mt-5">Click a dog you like!</h2>
-              <h2>Don't click on a dog you already clicked on or you lose.</h2>
-              <h3 className="mt-5">Go for the high score!</h3>
+              <h2>Don't click on a dog you already clicked or you lose.</h2>
+              <h3 className="mt-5">How many dogs can you get?</h3>
+              <h3 className="mt-2">Can you get them all?</h3>
 
               <div className="container mt-5 mb-5">
                 <button
