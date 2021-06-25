@@ -13,7 +13,7 @@ function App() {
   const [alreadyClicked, setAlreadyClicked] = useState([]);
   const [cardsInPlay, setCardsInPlay] = useState(dogList);
   const [lost, setLost] = useState(false);
-  const [win, setWin] = useState(true);
+  const [win, setWin] = useState(false);
   const [savedScore, setSavedScore] = useState(0);
   const [startGame, setStartGame] = useState(false);
   const [lastClickedDog, setLastClickedDog] = useState("");
@@ -102,7 +102,7 @@ function App() {
   if (startGame) {
     return (
       <div className="App ">
-        <div className="container row m-1 mt-3 ">
+        <div className="container score m-1 mt-3 ">
           <div
             className="alert alert-warning outline"
             style={{ height: "fit-content", width: "fit-content" }}>
