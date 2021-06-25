@@ -10,6 +10,10 @@ function App() {
   const [highScore, setHighScore] = useState(0);
   const [cards, setCards] = useState(dogList);
   const [chosenDogs, setChosenDogs] = useState([]);
+  const [alreadyClicked, setAlreadyClicked] = useState([]);
+  const [cardsInPlay, setCardsInPlay] = useState(dogList);
+  const [lost, setLost] = useState(false);
+  const [win, setWin] = useState(false);
 
   useEffect(() => {
     const highScoreUpdater = () => {
@@ -19,7 +23,8 @@ function App() {
     };
 
     highScoreUpdater();
-  }, [highScore, score, cards, chosenDogs]);
+    console.table(alreadyClicked);
+  }, [highScore, score, cards, chosenDogs, alreadyClicked, cardsInPlay]);
 
   const shuffle = (array) => {
     let currentIndex = array.length,
@@ -42,18 +47,50 @@ function App() {
   };
 
   const clickedDog = (dogName) => {
-    const randomCards = shuffle(cards);
-    setCards(randomCards);
+    let newCards = [...cards];
+    let currentCards = newCards.filter((val) => val.name !== dogName);
+    let currentAlreadyClicked = alreadyClicked.concat(
+      newCards.filter((val) => val.name === dogName)
+    );
+    setCards(shuffle(currentCards));
+    setAlreadyClicked(shuffle(currentAlreadyClicked));
     if (chosenDogs.filter((e) => e === dogName).length > 0) {
       console.log("Already Clicked! You Lose");
       setScore(0);
       setCards(dogList);
       setChosenDogs([]);
+      setCardsInPlay(shuffle(dogList));
+      setAlreadyClicked([]);
+      setLost(true);
     } else {
       setChosenDogs(chosenDogs.concat(dogName));
+      if (score === 10) {
+        console.log("You Win!");
+        setWin(true);
+        setScore(score + 1);
+        return;
+      }
       setScore(score + 1);
-      let newCards = [...cards];
-      setCards(newCards.filter((val) => val.name !== dogName));
+
+      const deckBuilder = () => {
+        if (alreadyClicked.length === 0) {
+          setCardsInPlay(shuffle(cardsInPlay));
+        } else {
+          let newCardsInPlay = [];
+          for (let i = 0; i < currentAlreadyClicked.length; i++) {
+            if (i >= 7) {
+              break;
+            } else {
+              newCardsInPlay.push(currentAlreadyClicked[i]);
+            }
+          }
+          for (let i = 0; newCardsInPlay.length < 8; i++) {
+            newCardsInPlay.push(currentCards[i]);
+          }
+          setCardsInPlay(shuffle(newCardsInPlay));
+        }
+      };
+      deckBuilder();
     }
   };
 
@@ -66,7 +103,15 @@ function App() {
           <HighScore highScore={highScore} />
         </div>
       </div>
-      <Cards cards={cards} clickedDog={clickedDog} />
+      <Cards
+        cards={cards}
+        clickedDog={clickedDog}
+        alreadyClicked={alreadyClicked}
+        cardsInPlay={cardsInPlay}
+        setCardsInPlay={setCardsInPlay}
+        lost={lost}
+        win={win}
+      />
     </div>
   );
 }
