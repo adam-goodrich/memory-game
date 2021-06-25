@@ -7,12 +7,25 @@ html {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: #5bc0de;
-  height: 100%;
-  padding: 0;
-  margin: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+}
+
+@media only screen and (min-width: 800px) {
+  body,
+  html {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
+      "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
+      "Helvetica Neue", sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background-color: #5bc0de;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 }
 
 code {
@@ -47,6 +60,22 @@ code {
   height: 15vw;
   object-fit: cover;
   border-bottom: 1px solid black;
+}
+
+@media only screen and (max-width: 400px) {
+  .card {
+    min-width: 145px;
+    border: 1px solid black;
+    box-shadow: 3px 5px rgb(97, 97, 97);
+  }
+}
+
+@media only screen and (max-width: 300px) {
+  .card {
+    min-width: 126px;
+    border: 1px solid black;
+    box-shadow: 3px 5px rgb(97, 97, 97);
+  }
 }
 
 .outline {
