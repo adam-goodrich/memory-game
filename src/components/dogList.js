@@ -9,6 +9,11 @@ import greatDane from "/Users/agoodrich/Desktop/Programming/memory-game/src/imag
 import dachshund from "/Users/agoodrich/Desktop/Programming/memory-game/src/images/dachshund.jpeg";
 import rottweiler from "/Users/agoodrich/Desktop/Programming/memory-game/src/images/rottweiler.jpeg";
 import frenchBulldog from "/Users/agoodrich/Desktop/Programming/memory-game/src/images/frenchBulldog.jpeg";
+import shibaInu from "/Users/agoodrich/Desktop/Programming/memory-game/src/images/shibaInu.jpeg";
+import chowChow from "/Users/agoodrich/Desktop/Programming/memory-game/src/images/chowChow.jpeg";
+import shihTzu from "/Users/agoodrich/Desktop/Programming/memory-game/src/images/shihTzu.jpeg";
+import samoyed from "/Users/agoodrich/Desktop/Programming/memory-game/src/images/samoyed.jpeg";
+import newfoundlandDog from "/Users/agoodrich/Desktop/Programming/memory-game/src/images/newfoundlandDog.jpeg";
 
 const dogList = [
   {
@@ -54,6 +59,26 @@ const dogList = [
   {
     img: frenchBulldog,
     name: "French Bulldog",
+  },
+  {
+    img: shibaInu,
+    name: "shiba Inu",
+  },
+  {
+    img: shihTzu,
+    name: "Shih Tzu",
+  },
+  {
+    img: chowChow,
+    name: "Chow Chow",
+  },
+  {
+    img: samoyed,
+    name: "Samoyed",
+  },
+  {
+    img: newfoundlandDog,
+    name: "Newfoundland Dog",
   },
 ];
 

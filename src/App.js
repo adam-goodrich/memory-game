@@ -14,6 +14,9 @@ function App() {
   const [cardsInPlay, setCardsInPlay] = useState(dogList);
   const [lost, setLost] = useState(false);
   const [win, setWin] = useState(false);
+  const [savedScore, setSavedScore] = useState(0);
+  const [startGame, setStartGame] = useState(false);
+  const [lastClickedDog, setLastClickedDog] = useState("");
 
   useEffect(() => {
     const highScoreUpdater = () => {
@@ -47,6 +50,7 @@ function App() {
   };
 
   const clickedDog = (dogName) => {
+    setLastClickedDog(dogName);
     let newCards = [...cards];
     let currentCards = newCards.filter((val) => val.name !== dogName);
     let currentAlreadyClicked = alreadyClicked.concat(
@@ -56,6 +60,7 @@ function App() {
     setAlreadyClicked(shuffle(currentAlreadyClicked));
     if (chosenDogs.filter((e) => e === dogName).length > 0) {
       console.log("Already Clicked! You Lose");
+      setSavedScore(score);
       setScore(0);
       setCards(dogList);
       setChosenDogs([]);
@@ -64,7 +69,7 @@ function App() {
       setLost(true);
     } else {
       setChosenDogs(chosenDogs.concat(dogName));
-      if (score === 10) {
+      if (score === dogList.length - 1) {
         console.log("You Win!");
         setWin(true);
         setScore(score + 1);
@@ -78,13 +83,13 @@ function App() {
         } else {
           let newCardsInPlay = [];
           for (let i = 0; i < currentAlreadyClicked.length; i++) {
-            if (i >= 7) {
+            if (i >= 11) {
               break;
             } else {
               newCardsInPlay.push(currentAlreadyClicked[i]);
             }
           }
-          for (let i = 0; newCardsInPlay.length < 8; i++) {
+          for (let i = 0; newCardsInPlay.length < 12; i++) {
             newCardsInPlay.push(currentCards[i]);
           }
           setCardsInPlay(shuffle(newCardsInPlay));
@@ -94,26 +99,66 @@ function App() {
     }
   };
 
-  return (
-    <div className="App">
-      <h2 className="mt-4">Don't forget a dog!</h2>
-      <div className="container" style={{ width: "200px" }}>
-        <div className="">
-          <CurrentScore score={score} />
-          <HighScore highScore={highScore} />
+  if (startGame) {
+    return (
+      <div className="App">
+        <div className="container" style={{ width: "200px" }}>
+          <div className="mt-4">
+            <CurrentScore score={score} />
+            <HighScore highScore={highScore} />
+          </div>
+        </div>
+        <Cards
+          cards={cards}
+          clickedDog={clickedDog}
+          alreadyClicked={alreadyClicked}
+          cardsInPlay={cardsInPlay}
+          setCardsInPlay={setCardsInPlay}
+          lost={lost}
+          setLost={setLost}
+          win={win}
+          setWin={setWin}
+          savedScore={savedScore}
+          highScore={highScore}
+          setScore={setScore}
+          setCards={setCards}
+          setChosenDogs={setChosenDogs}
+          setAlreadyClicked={setAlreadyClicked}
+          shuffle={shuffle}
+          dogList={dogList}
+          lastClickedDog={lastClickedDog}
+        />
+      </div>
+    );
+  } else {
+    return (
+      <div className="App">
+        <div className="container mt-5 ">
+          <div className="container d-flex align-items-center justify-content-center">
+            <div
+              className="alert alert-info outline p-5"
+              style={{ height: "fit-content" }}>
+              <h1 className="mt-5">Never Forget a Dog!</h1>
+
+              <h2 className="mt-5">Click a dog you like!</h2>
+              <h2>Don't click on a dog you already clicked on or you lose.</h2>
+              <h3 className="mt-5">Go for the high score!</h3>
+
+              <div className="container mt-5 mb-5">
+                <button
+                  className="btn btn-success btn-lg"
+                  onClick={() => {
+                    setStartGame(true);
+                  }}>
+                  Start Game
+                </button>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-      <Cards
-        cards={cards}
-        clickedDog={clickedDog}
-        alreadyClicked={alreadyClicked}
-        cardsInPlay={cardsInPlay}
-        setCardsInPlay={setCardsInPlay}
-        lost={lost}
-        win={win}
-      />
-    </div>
-  );
+    );
+  }
 }
 
 export default App;
