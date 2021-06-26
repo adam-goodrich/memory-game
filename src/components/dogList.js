@@ -56,7 +56,7 @@ const dogList = [
   },
   {
     img: chihuahua,
-    name: "Chichuachua",
+    name: "Chihuahua",
   },
   {
     img: poodle,
