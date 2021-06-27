@@ -32,7 +32,7 @@ function App() {
   useEffect(() => {
     const images = [];
     dogList.map((object) => {
-      images.push(object.img);
+      return images.push(object.img);
     });
 
     cacheImages(images);
