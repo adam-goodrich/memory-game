@@ -1,9 +1,10 @@
-import { useState, useEffect, Spinner } from "react";
+import { useState, useEffect } from "react";
 import "./App.css";
 import CurrentScore from "./components/CurrentScore";
 import HighScore from "./components/HighScore";
 import Cards from "./components/Cards";
 import dogList from "./components/dogList";
+import ClipLoader from "react-spinners/ClipLoader";
 
 function App() {
   const [score, setScore] = useState(0);
@@ -127,7 +128,7 @@ function App() {
     if (isLoading) {
       return (
         <div className="spinner-div>">
-          <Spinner />
+          <ClipLoader />
         </div>
       );
     }
