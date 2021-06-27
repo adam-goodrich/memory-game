@@ -1,10 +1,6 @@
 import { useEffect } from "react";
 
 function Cards(props) {
-  useEffect(() => {
-    return props.setCardsInPlay(props.cardsInPlay);
-  }, [props]);
-
   if (props.lost) {
     return (
       <div className="container mt-5">
