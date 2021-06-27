@@ -26,8 +26,7 @@ function App() {
     };
 
     highScoreUpdater();
-    console.table(alreadyClicked);
-  }, [highScore, score, cards, chosenDogs, alreadyClicked, cardsInPlay]);
+  }, [highScore, score]);
 
   const shuffle = (array) => {
     let currentIndex = array.length,
@@ -59,7 +58,6 @@ function App() {
     setCards(shuffle(currentCards));
     setAlreadyClicked(shuffle(currentAlreadyClicked));
     if (chosenDogs.filter((e) => e === dogName).length > 0) {
-      console.log("Already Clicked! You Lose");
       setSavedScore(score);
       setScore(0);
       setCards(dogList);
