@@ -30,8 +30,8 @@ function App() {
 
   useEffect(() => {
     dogList.forEach((picture) => {
-      const img = new Image();
-      img.src = picture.img;
+      const newPic = new Image();
+      newPic.src = picture.img;
     });
   });
 
