@@ -164,6 +164,7 @@ function App() {
           shuffle={shuffle}
           dogList={dogList}
           lastClickedDog={lastClickedDog}
+          setIsLoading={setIsLoading}
         />
       </div>
     );

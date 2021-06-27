@@ -26,6 +26,7 @@ function Cards(props) {
                   props.setChosenDogs([]);
                   props.setCardsInPlay(props.shuffle(props.dogList));
                   props.setAlreadyClicked([]);
+                  props.setIsLoading(true);
                 }}>
                 Try Again
               </button>
