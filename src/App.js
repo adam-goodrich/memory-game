@@ -188,6 +188,7 @@ function App() {
                   className="btn btn-success btn-lg"
                   onClick={() => {
                     setStartGame(true);
+                    setIsLoading(true);
                   }}>
                   Start Game
                 </button>
