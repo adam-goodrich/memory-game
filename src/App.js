@@ -28,6 +28,13 @@ function App() {
     highScoreUpdater();
   }, [highScore, score]);
 
+  useEffect(() => {
+    dogList.forEach((picture) => {
+      const img = new Image();
+      img.src = picture.img;
+    });
+  });
+
   const shuffle = (array) => {
     let currentIndex = array.length;
     let randomIndex;
