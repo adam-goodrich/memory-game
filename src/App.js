@@ -29,8 +29,8 @@ function App() {
   }, [highScore, score]);
 
   const shuffle = (array) => {
-    let currentIndex = array.length,
-      randomIndex;
+    let currentIndex = array.length;
+    let randomIndex;
 
     // While there remain elements to shuffle...
     while (0 !== currentIndex) {
