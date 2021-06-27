@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, Spinner } from "react";
 import "./App.css";
 import CurrentScore from "./components/CurrentScore";
 import HighScore from "./components/HighScore";
@@ -17,6 +17,7 @@ function App() {
   const [savedScore, setSavedScore] = useState(0);
   const [startGame, setStartGame] = useState(false);
   const [lastClickedDog, setLastClickedDog] = useState("");
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const highScoreUpdater = () => {
@@ -29,11 +30,29 @@ function App() {
   }, [highScore, score]);
 
   useEffect(() => {
-    dogList.forEach((picture) => {
-      const newPic = new Image();
-      newPic.src = picture.img;
+    const images = [];
+    dogList.map((object) => {
+      images.push(object.img);
     });
+
+    cacheImages(images);
   });
+
+  const cacheImages = async (srcArray) => {
+    const promises = await srcArray.map((src) => {
+      return new Promise(function (resolve, reject) {
+        const img = new Image();
+
+        img.src = src;
+        img.onload = resolve();
+        img.onerror = reject();
+      });
+    });
+
+    await Promise.all(promises);
+
+    setIsLoading(false);
+  };
 
   const shuffle = (array) => {
     let currentIndex = array.length;
@@ -105,6 +124,13 @@ function App() {
   };
 
   if (startGame) {
+    if (isLoading) {
+      return (
+        <div className="spinner-div>">
+          <Spinner />
+        </div>
+      );
+    }
     return (
       <div className="App ">
         <div className="container score m-1 mt-3 ">
