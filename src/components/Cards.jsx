@@ -1,5 +1,3 @@
-import { useEffect } from "react";
-
 function Cards(props) {
   if (props.lost) {
     return (
