@@ -1,17 +1,17 @@
 {
   "files": {
     "main.css": "/memory-game/static/css/main.6dc29d20.chunk.css",
-    "main.js": "/memory-game/static/js/main.b22a3f0c.chunk.js",
-    "main.js.map": "/memory-game/static/js/main.b22a3f0c.chunk.js.map",
-    "runtime-main.js": "/memory-game/static/js/runtime-main.d9e6c5df.js",
-    "runtime-main.js.map": "/memory-game/static/js/runtime-main.d9e6c5df.js.map",
-    "static/js/2.4384774a.chunk.js": "/memory-game/static/js/2.4384774a.chunk.js",
-    "static/js/2.4384774a.chunk.js.map": "/memory-game/static/js/2.4384774a.chunk.js.map",
-    "static/js/3.480c55fa.chunk.js": "/memory-game/static/js/3.480c55fa.chunk.js",
-    "static/js/3.480c55fa.chunk.js.map": "/memory-game/static/js/3.480c55fa.chunk.js.map",
+    "main.js": "/memory-game/static/js/main.2cff0b56.chunk.js",
+    "main.js.map": "/memory-game/static/js/main.2cff0b56.chunk.js.map",
+    "runtime-main.js": "/memory-game/static/js/runtime-main.ddddffac.js",
+    "runtime-main.js.map": "/memory-game/static/js/runtime-main.ddddffac.js.map",
+    "static/js/2.551e6083.chunk.js": "/memory-game/static/js/2.551e6083.chunk.js",
+    "static/js/2.551e6083.chunk.js.map": "/memory-game/static/js/2.551e6083.chunk.js.map",
+    "static/js/3.5a4b8b4f.chunk.js": "/memory-game/static/js/3.5a4b8b4f.chunk.js",
+    "static/js/3.5a4b8b4f.chunk.js.map": "/memory-game/static/js/3.5a4b8b4f.chunk.js.map",
     "index.html": "/memory-game/index.html",
     "static/css/main.6dc29d20.chunk.css.map": "/memory-game/static/css/main.6dc29d20.chunk.css.map",
-    "static/js/2.4384774a.chunk.js.LICENSE.txt": "/memory-game/static/js/2.4384774a.chunk.js.LICENSE.txt",
+    "static/js/2.551e6083.chunk.js.LICENSE.txt": "/memory-game/static/js/2.551e6083.chunk.js.LICENSE.txt",
     "static/media/bassetHound.61d3a80c.jpeg": "/memory-game/static/media/bassetHound.61d3a80c.jpeg",
     "static/media/beagle.a6401bc1.jpeg": "/memory-game/static/media/beagle.a6401bc1.jpeg",
     "static/media/borderCollie.5a8b328b.jpeg": "/memory-game/static/media/borderCollie.5a8b328b.jpeg",
@@ -41,9 +41,9 @@
     "static/media/stBernard.0f98a1be.jpeg": "/memory-game/static/media/stBernard.0f98a1be.jpeg"
   },
   "entrypoints": [
-    "static/js/runtime-main.d9e6c5df.js",
-    "static/js/2.4384774a.chunk.js",
+    "static/js/runtime-main.ddddffac.js",
+    "static/js/2.551e6083.chunk.js",
     "static/css/main.6dc29d20.chunk.css",
-    "static/js/main.b22a3f0c.chunk.js"
+    "static/js/main.2cff0b56.chunk.js"
   ]
 }
