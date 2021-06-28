@@ -1,6 +1,5 @@
 import HighScore from "./HighScore";
 import CurrentScore from "./CurrentScore";
-import Footer from "./Footer";
 
 function Cards(props) {
   if (props.lost) {
@@ -75,7 +74,7 @@ function Cards(props) {
     );
   } else {
     return (
-      <div className="container mb-5">
+      <div className="container mb-2">
         <div className="container score m-1 mt-3 ">
           <div
             className="alert alert-warning outline"
