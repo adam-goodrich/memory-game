@@ -128,8 +128,10 @@ function App() {
   if (startGame) {
     if (isLoading) {
       return (
-        <div className="spinner-div>">
-          <ClipLoader />
+        <div className="flex-container mt-5">
+          <div className="spinner-div mt-5">
+            <ClipLoader color="yellow" size="100" />
+          </div>
         </div>
       );
     }

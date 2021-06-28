@@ -73,3 +73,12 @@ code {
   border: 5px solid black;
   box-shadow: 5px 5px rgb(97, 97, 97);
 }
+
+.flex-container {
+  height: 90vh;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
