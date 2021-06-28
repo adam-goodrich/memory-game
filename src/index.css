@@ -92,3 +92,7 @@ code {
   color: white;
   text-align: center;
 }
+
+a {
+  color: inherit;
+}
