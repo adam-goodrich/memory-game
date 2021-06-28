@@ -3,6 +3,7 @@ import "./App.css";
 import Cards from "./components/Cards";
 import dogList from "./components/dogList";
 import ClipLoader from "react-spinners/ClipLoader";
+import Footer from "./components/Footer";
 
 function App() {
   const [score, setScore] = useState(0);
@@ -134,6 +135,7 @@ function App() {
           <div className="spinner-div mt-5">
             <ClipLoader color="yellow" size="100" />
           </div>
+          <Footer />
         </div>
       );
     }
@@ -161,6 +163,7 @@ function App() {
           setIsLoading={setIsLoading}
           score={score}
         />
+        <Footer />
       </div>
     );
   } else {
@@ -191,6 +194,7 @@ function App() {
             </div>
           </div>
         </div>
+        <Footer />
       </div>
     );
   }

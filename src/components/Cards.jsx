@@ -1,5 +1,6 @@
 import HighScore from "./HighScore";
 import CurrentScore from "./CurrentScore";
+import Footer from "./Footer";
 
 function Cards(props) {
   if (props.lost) {
@@ -36,6 +37,7 @@ function Cards(props) {
             </div>
           </div>
         </div>
+        <Footer />
       </div>
     );
   } else if (props.win) {
