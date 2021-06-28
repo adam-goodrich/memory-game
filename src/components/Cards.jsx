@@ -5,7 +5,7 @@ import Footer from "./Footer";
 function Cards(props) {
   if (props.lost) {
     return (
-      <div className="container mt-5">
+      <div className="container mt-3">
         <div className="container d-flex align-items-center justify-content-center ">
           <div
             className="alert alert-danger outline p-5"
@@ -37,7 +37,6 @@ function Cards(props) {
             </div>
           </div>
         </div>
-        <Footer />
       </div>
     );
   } else if (props.win) {

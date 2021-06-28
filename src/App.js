@@ -135,7 +135,6 @@ function App() {
           <div className="spinner-div mt-5">
             <ClipLoader color="yellow" size="100" />
           </div>
-          <Footer />
         </div>
       );
     }
