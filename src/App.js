@@ -37,6 +37,10 @@ function App() {
     cacheImages(images);
   });
 
+  useEffect(() => {
+    setCards(shuffle(cards));
+  }, [setCards, cards]);
+
   const cacheImages = async (srcArray) => {
     const promises = await srcArray.map((src) => {
       return new Promise(function (resolve, reject) {
