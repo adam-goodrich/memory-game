@@ -1,3 +1,6 @@
+import HighScore from "./HighScore";
+import CurrentScore from "./CurrentScore";
+
 function Cards(props) {
   if (props.lost) {
     return (
@@ -72,6 +75,16 @@ function Cards(props) {
   } else {
     return (
       <div className="container mb-5">
+        <div className="container score m-1 mt-3 ">
+          <div
+            className="alert alert-warning outline"
+            style={{ height: "fit-content", width: "fit-content" }}>
+            <div className="mt">
+              <CurrentScore score={props.score} />
+              <HighScore highScore={props.highScore} />
+            </div>
+          </div>
+        </div>
         <div className="row">
           {props.cardsInPlay.map((_, index) => {
             while (index <= 11) {

@@ -1,7 +1,5 @@
 import { useState, useEffect } from "react";
 import "./App.css";
-import CurrentScore from "./components/CurrentScore";
-import HighScore from "./components/HighScore";
 import Cards from "./components/Cards";
 import dogList from "./components/dogList";
 import ClipLoader from "react-spinners/ClipLoader";
@@ -137,16 +135,6 @@ function App() {
     }
     return (
       <div className="App ">
-        <div className="container score m-1 mt-3 ">
-          <div
-            className="alert alert-warning outline"
-            style={{ height: "fit-content", width: "fit-content" }}>
-            <div className="mt">
-              <CurrentScore score={score} />
-              <HighScore highScore={highScore} />
-            </div>
-          </div>
-        </div>
         <Cards
           cards={cards}
           clickedDog={clickedDog}
@@ -167,6 +155,7 @@ function App() {
           dogList={dogList}
           lastClickedDog={lastClickedDog}
           setIsLoading={setIsLoading}
+          score={score}
         />
       </div>
     );
