@@ -1,12 +1,7 @@
 import HighScore from "./HighScore";
 import CurrentScore from "./CurrentScore";
-import { useEffect } from "react";
 
 function Cards(props) {
-  useEffect(() => {
-    props.setCards(props.shuffle(props.cards));
-  });
-
   if (props.lost) {
     return (
       <div className="container mt-5">
