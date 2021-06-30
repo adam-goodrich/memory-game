@@ -74,45 +74,47 @@ function Cards(props) {
     );
   } else {
     return (
-      <div className="container mb-2">
-        <div className="container score m-1 mt-3 ">
-          <div
-            className="alert alert-warning outline"
-            style={{ height: "fit-content", width: "fit-content" }}>
-            <div className="mt">
-              <CurrentScore score={props.score} />
-              <HighScore highScore={props.highScore} />
+      <div className="container mb-5">
+        <div className="cards-container">
+          <div className="container score m-1 mt-1 ">
+            <div
+              className="alert alert-warning outline"
+              style={{ height: "fit-content", width: "fit-content" }}>
+              <div className="mt">
+                <CurrentScore score={props.score} />
+                <HighScore highScore={props.highScore} />
+              </div>
             </div>
           </div>
-        </div>
-        <div className="row">
-          {props.cardsInPlay.map((_, index) => {
-            while (index <= 11) {
-              return (
-                <div
-                  key={`card-${index}`}
-                  id={props.cardsInPlay[index].name}
-                  className="col-xl-2 col-md-3 col-6 d-flex align-items-stretch "
-                  onClick={() => {
-                    props.clickedDog(props.cardsInPlay[index].name);
-                  }}>
-                  <div className="card mt-3">
-                    <img
-                      src={props.cardsInPlay[index].img}
-                      className="card-img-top embed-responsive-item"
-                      alt="bulldog"
-                    />
-                    <div className="card-body">
-                      <h5 className="card-title">
-                        {props.cardsInPlay[index].name}
-                      </h5>
+          <div className="row">
+            {props.cardsInPlay.map((_, index) => {
+              while (index <= 11) {
+                return (
+                  <div
+                    key={`card-${index}`}
+                    id={props.cardsInPlay[index].name}
+                    className="col-xl-2 col-md-3 col-6 d-flex align-items-stretch "
+                    onClick={() => {
+                      props.clickedDog(props.cardsInPlay[index].name);
+                    }}>
+                    <div className="card mt-3">
+                      <img
+                        src={props.cardsInPlay[index].img}
+                        className="card-img-top embed-responsive-item"
+                        alt="bulldog"
+                      />
+                      <div className="card-body">
+                        <h5 className="card-title">
+                          {props.cardsInPlay[index].name}
+                        </h5>
+                      </div>
                     </div>
                   </div>
-                </div>
-              );
-            }
-            return true;
-          })}
+                );
+              }
+              return true;
+            })}
+          </div>
         </div>
       </div>
     );

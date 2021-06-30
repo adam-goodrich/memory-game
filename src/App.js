@@ -140,7 +140,7 @@ function App() {
     }
     return (
       <div className="App ">
-        <div className="cards-container">
+        <div>
           <Cards
             cards={cards}
             clickedDog={clickedDog}
@@ -163,7 +163,6 @@ function App() {
             setIsLoading={setIsLoading}
             score={score}
           />
-          <Footer />
         </div>
       </div>
     );
