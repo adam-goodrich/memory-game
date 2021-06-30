@@ -140,29 +140,31 @@ function App() {
     }
     return (
       <div className="App ">
-        <Cards
-          cards={cards}
-          clickedDog={clickedDog}
-          alreadyClicked={alreadyClicked}
-          cardsInPlay={cardsInPlay}
-          setCardsInPlay={setCardsInPlay}
-          lost={lost}
-          setLost={setLost}
-          win={win}
-          setWin={setWin}
-          savedScore={savedScore}
-          highScore={highScore}
-          setScore={setScore}
-          setCards={setCards}
-          setChosenDogs={setChosenDogs}
-          setAlreadyClicked={setAlreadyClicked}
-          shuffle={shuffle}
-          dogList={dogList}
-          lastClickedDog={lastClickedDog}
-          setIsLoading={setIsLoading}
-          score={score}
-        />
-        <Footer />
+        <div className="cards-container">
+          <Cards
+            cards={cards}
+            clickedDog={clickedDog}
+            alreadyClicked={alreadyClicked}
+            cardsInPlay={cardsInPlay}
+            setCardsInPlay={setCardsInPlay}
+            lost={lost}
+            setLost={setLost}
+            win={win}
+            setWin={setWin}
+            savedScore={savedScore}
+            highScore={highScore}
+            setScore={setScore}
+            setCards={setCards}
+            setChosenDogs={setChosenDogs}
+            setAlreadyClicked={setAlreadyClicked}
+            shuffle={shuffle}
+            dogList={dogList}
+            lastClickedDog={lastClickedDog}
+            setIsLoading={setIsLoading}
+            score={score}
+          />
+          <Footer />
+        </div>
       </div>
     );
   } else {
