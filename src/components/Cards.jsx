@@ -6,9 +6,7 @@ function Cards(props) {
     return (
       <div className="container mt-3">
         <div className="container d-flex align-items-center justify-content-center ">
-          <div
-            className="alert alert-danger outline p-5"
-            style={{ height: "fit-content" }}>
+          <div className="alert alert-danger outline p-5 ">
             <h1>You Lose!</h1>
             <h2 className="mt-5">
               You already clicked {props.lastClickedDog}.
@@ -40,7 +38,7 @@ function Cards(props) {
     );
   } else if (props.win) {
     return (
-      <div className="container mt-5">
+      <div className="container mt-5 title-card">
         <div className="container d-flex align-items-center justify-content-center ">
           <div
             className="alert alert-success outline p-5"

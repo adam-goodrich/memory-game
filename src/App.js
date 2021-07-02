@@ -170,7 +170,7 @@ function App() {
     return (
       <div className="App">
         <div className="container mt-5 ">
-          <div className="container d-flex align-items-center justify-content-center">
+          <div className="container d-flex align-items-center justify-content-center title-card">
             <div
               className="alert alert-info outline p-5"
               style={{ height: "fit-content" }}>
@@ -191,10 +191,10 @@ function App() {
                   Start Game
                 </button>
               </div>
+              <Footer />
             </div>
           </div>
         </div>
-        <Footer />
       </div>
     );
   }
