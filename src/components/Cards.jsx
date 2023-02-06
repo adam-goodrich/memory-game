@@ -1,5 +1,6 @@
 import HighScore from "./HighScore";
 import CurrentScore from "./CurrentScore";
+import Leaderboard from "./Leaderboard";
 
 function Cards(props) {
   if (props.lost) {
@@ -15,7 +16,7 @@ function Cards(props) {
             <h2>
               {props.savedScore === props.highScore
                 ? "New High Score!"
-                : `Can you beat the high score of ${props.highScore}?`}
+                : `Can you beat your high score of ${props.highScore}?`}
             </h2>
             <div className="container mt-5 mb-5">
               <button
@@ -33,6 +34,9 @@ function Cards(props) {
               </button>
             </div>
           </div>
+        </div>
+        <div className="leaderboardContainer mt-5">
+          <Leaderboard />
         </div>
       </div>
     );
@@ -68,12 +72,15 @@ function Cards(props) {
             </div>
           </div>
         </div>
+        <div className="leaderboardContainer mt-5">
+          <Leaderboard />
+        </div>
       </div>
     );
   } else {
     return (
       <div className="container mb-5">
-        <div className="cards-container">
+        <div className="cards-container mb-5">
           <div className="container score m-1 mt-1 ">
             <div
               className="alert alert-warning outline"

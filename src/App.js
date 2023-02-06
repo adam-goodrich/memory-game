@@ -18,6 +18,7 @@ import {
   getDocs,
   updateDoc,
 } from "firebase/firestore";
+import Leaderboard from "./components/Leaderboard";
 
 function App() {
   const [score, setScore] = useState(0);
@@ -156,6 +157,23 @@ function App() {
   };
 
   const handleCreateUser = async (auth, email, password, name) => {
+    // validate email and password
+    if (email === "" || password === "" || name === "") {
+      alert("Please fill out all fields");
+      return;
+    }
+    if (password.length < 6) {
+      alert("Password must be at least 6 characters");
+      return;
+    }
+    // email validation
+    const emailRegex = new RegExp(
+      "^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\\.[a-zA-Z0-9-]+)*$"
+    );
+    if (!emailRegex.test(email)) {
+      alert("Please enter a valid email address");
+      return;
+    }
     try {
       await createUserWithEmailAndPassword(auth, email, password).catch(
         (error) => {
@@ -192,12 +210,18 @@ function App() {
   };
 
   const handleLogin = async (auth, email, password) => {
+    // validate email and password
+    if (email === "" || password === "") {
+      alert("Please fill out all fields");
+      return;
+    }
     try {
-      await signInWithEmailAndPassword(auth, email, password).catch((error) => {
-        console.log(error);
-      });
+      await signInWithEmailAndPassword(auth, email, password);
     } catch (error) {
-      console.log(error);
+      alert("Incorrect email or password");
+      setEmail("");
+      setPassword("");
+      return;
     }
 
     // set highscore on firebase user to highscore
@@ -208,11 +232,14 @@ function App() {
         setHighScore(doc.data().highScore);
         console.log(doc.id);
         setcurrentDocId(doc.id);
+        setLoggedIn(true);
+        setName(auth.currentUser.displayName);
+        setLogin(false);
       }
     });
-    setName(auth.currentUser.displayName);
-    setLoggedIn(true);
-    setLogin(false);
+    if (email === "" || password === "") {
+      return;
+    }
   };
 
   if (login) {
@@ -222,8 +249,9 @@ function App() {
           <div className="login-form">
             <h1 className="login-title">Login</h1>
             <form>
-              <label className="login-label" htmlFor="email">
+              <label className="login-label mt-3" htmlFor="email">
                 Email
+                <br />
                 <input
                   type="text"
                   placeholder="Email"
@@ -232,8 +260,11 @@ function App() {
                   value={email}
                 />
               </label>
-              <label className="login-label" htmlFor="password">
+              <br />
+
+              <label className="login-label mt-3" htmlFor="password">
                 Password
+                <br />
                 <input
                   type="password"
                   placeholder="Password"
@@ -242,24 +273,30 @@ function App() {
                   value={password}
                 />
               </label>
+              <br />
+
               <button
-                className="login-button"
+                className="btn btn-success mt-3"
                 onClick={(e) => {
                   e.preventDefault();
                   handleLogin(auth, email, password);
                 }}>
                 Login
               </button>
+              <br />
             </form>
             <button
-              className="createUser-button"
+              className="btn btn-primary mt-5"
               onClick={() => {
                 setLogin(false);
                 setCreateUser(true);
               }}>
-              Create Account
+              Don't have an account? Create one here!
             </button>
           </div>
+        </div>
+        <div className="leaderboardContainer mt-5">
+          <Leaderboard />
         </div>
       </div>
     );
@@ -271,41 +308,53 @@ function App() {
         <div className="createUser-container">
           <div className="createUser-form">
             <h1 className="createUser-title">Create Account</h1>
-            <form>
-              <label className="createUser-label" htmlFor="name">
+            <form className="form-group">
+              <label className="createUser-label mt-2" htmlFor="name">
                 Name
+                <br />
                 <input
+                  className="form-control"
                   type="text"
                   placeholder="Name"
                   name="name"
                   onChange={(e) => setName(e.target.value)}
                   value={name}
+                  required
                 />
               </label>
-
-              <label className="createUser-label" htmlFor="email">
+              <br />
+              <label className="createUser-label mt-2" htmlFor="email">
                 Email
+                <br />
                 <input
+                  className="form-control"
                   type="text"
                   placeholder="Email"
                   name="email"
                   onChange={(e) => setEmail(e.target.value)}
                   value={email}
+                  required
                 />
               </label>
-              <label className="createUser-label" htmlFor="password">
+              <br />
+
+              <label className="createUser-label mt-2" htmlFor="password">
                 Password
+                <br />
                 <input
+                  className="form-control"
                   type="password"
                   placeholder="Password"
                   name="password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
+                  required
                 />
               </label>
+              <br />
 
               <button
-                className="createUser-button"
+                className="btn btn-primary mt-3"
                 onClick={(e) => {
                   e.preventDefault();
                   handleCreateUser(auth, email, password, name);
@@ -317,14 +366,17 @@ function App() {
               </button>
             </form>
             <button
-              className="login-button"
+              className="btn btn-success btn-lg mt-5"
               onClick={() => {
                 setCreateUser(false);
                 setLogin(true);
               }}>
-              Login
+              Already have an account? Login here
             </button>
           </div>
+        </div>
+        <div className="leaderboardContainer mt-5">
+          <Leaderboard />
         </div>
       </div>
     );
@@ -335,7 +387,7 @@ function App() {
       return (
         <div className="flex-container mt-5">
           <div className="spinner-div mt-5">
-            <ClipLoader color="yellow" size="100" />
+            <ClipLoader color="yellow" size="100px" />
           </div>
         </div>
       );
