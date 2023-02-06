@@ -10,8 +10,13 @@ html {
 }
 
 .cards-container {
-  height: 90vh;
+  height: fit-content;
   margin-top: 50px;
+  margin-bottom: 50px;
+}
+
+.container {
+  margin-bottom: 50px;
 }
 
 .title-card {
@@ -40,6 +45,22 @@ html {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+
+.login-container,
+.createUser-container,
+.leaderboardContainer {
+  height: fit-content;
+  width: 70vw;
+  margin: 50px auto 0 auto;
+  background-color: aliceblue;
+  border: 5px solid black;
+  box-shadow: 5px 7px rgb(97, 97, 97);
+  padding: 20px;
+}
+
+.leaderboardContainer {
+  margin-bottom: 50px;
 }
 
 .card:hover {
