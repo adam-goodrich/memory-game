@@ -203,7 +203,6 @@ function App() {
     querySnapshot.forEach((doc) => {
       if (doc.data().uid === auth.currentUser.uid) {
         setHighScore(doc.data().highScore);
-        console.log(doc.id);
         setcurrentDocId(doc.id);
       }
     });
@@ -230,7 +229,6 @@ function App() {
     querySnapshot.forEach((doc) => {
       if (doc.data().uid === auth.currentUser.uid) {
         setHighScore(doc.data().highScore);
-        console.log(doc.id);
         setcurrentDocId(doc.id);
         setLoggedIn(true);
         setName(auth.currentUser.displayName);
@@ -394,7 +392,7 @@ function App() {
     }
     return (
       <div className="App ">
-        <div>
+        <div className="mt-3 mb-3">
           <Cards
             cards={cards}
             clickedDog={clickedDog}
