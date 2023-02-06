@@ -4,6 +4,8 @@ import Cards from "./components/Cards";
 import dogList from "./components/dogList";
 import ClipLoader from "react-spinners/ClipLoader";
 import Footer from "./components/Footer";
+import app from "./firebase.config";
+import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 
 function App() {
   const [score, setScore] = useState(0);
@@ -18,6 +20,13 @@ function App() {
   const [startGame, setStartGame] = useState(false);
   const [lastClickedDog, setLastClickedDog] = useState("");
   const [isLoading, setIsLoading] = useState(true);
+  const [loggedIn, setLoggedIn] = useState(false);
+  const [createUser, setCreateUser] = useState(false);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [name, setName] = useState("");
+
+  let auth = getAuth();
 
   useEffect(() => {
     const highScoreUpdater = () => {
@@ -127,6 +136,76 @@ function App() {
       deckBuilder();
     }
   };
+
+  const handleCreateUser = () => {
+    createUserWithEmailAndPassword(auth, email, password, name)
+      .then((userCredential) => {
+        // Signed in
+        const user = userCredential.user;
+        const password = userCredential.password;
+        console.log(user);
+        console.log(password);
+
+        // ...
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        console.log(errorCode, errorMessage);
+        // ..
+      });
+  };
+
+  if (!createUser) {
+    return (
+      <div className="App">
+        <div className="login-container">
+          <div className="login-form">
+            <h1 className="login-title">Create Account</h1>
+            <form>
+              <label className="login-label" htmlFor="name">
+                Name
+                <input
+                  type="text"
+                  placeholder="Name"
+                  name="name"
+                  onChange={(e) => setName(e.target.value)}
+                />
+              </label>
+
+              <label className="login-label" htmlFor="email">
+                Email
+                <input
+                  type="text"
+                  placeholder="Email"
+                  name="email"
+                  onChange={(e) => setEmail(e.target.value)}
+                />
+              </label>
+              <label className="login-label" htmlFor="password">
+                Password
+                <input
+                  type="password"
+                  placeholder="Password"
+                  name="password"
+                  onChange={(e) => setPassword(e.target.value)}
+                />
+              </label>
+
+              <button
+                className="login-button"
+                onClick={(e) => {
+                  e.preventDefault();
+                  handleCreateUser();
+                }}>
+                Create Account
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   if (startGame) {
     if (isLoading) {
