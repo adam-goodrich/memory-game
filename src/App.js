@@ -4,8 +4,20 @@ import Cards from "./components/Cards";
 import dogList from "./components/dogList";
 import ClipLoader from "react-spinners/ClipLoader";
 import Footer from "./components/Footer";
-import app from "./firebase.config";
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import { db } from "./firebase.config";
+import {
+  getAuth,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  updateProfile,
+} from "firebase/auth";
+import {
+  collection,
+  addDoc,
+  doc,
+  getDocs,
+  updateDoc,
+} from "firebase/firestore";
 
 function App() {
   const [score, setScore] = useState(0);
@@ -17,26 +29,33 @@ function App() {
   const [lost, setLost] = useState(false);
   const [win, setWin] = useState(false);
   const [savedScore, setSavedScore] = useState(0);
-  const [startGame, setStartGame] = useState(false);
   const [lastClickedDog, setLastClickedDog] = useState("");
   const [isLoading, setIsLoading] = useState(true);
   const [loggedIn, setLoggedIn] = useState(false);
-  const [createUser, setCreateUser] = useState(false);
+  const [login, setLogin] = useState(false);
+  const [createUser, setCreateUser] = useState(true);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
+  const [currenDocId, setcurrentDocId] = useState(null);
 
   let auth = getAuth();
+  const collectionRef = collection(db, "users");
 
   useEffect(() => {
     const highScoreUpdater = () => {
       if (score > highScore) {
         setHighScore(score);
+        // write to firebase
+        const currentDoc = doc(db, "users", currenDocId);
+        updateDoc(currentDoc, {
+          highScore: score,
+        });
       }
     };
 
     highScoreUpdater();
-  }, [highScore, score]);
+  }, [highScore, score, currenDocId]);
 
   useEffect(() => {
     const images = [];
@@ -55,7 +74,6 @@ function App() {
     const promises = await srcArray.map((src) => {
       return new Promise(function (resolve, reject) {
         const img = new Image();
-
         img.src = src;
         img.onload = resolve();
         img.onerror = reject();
@@ -137,42 +155,73 @@ function App() {
     }
   };
 
-  const handleCreateUser = () => {
-    createUserWithEmailAndPassword(auth, email, password, name)
-      .then((userCredential) => {
-        // Signed in
-        const user = userCredential.user;
-        const password = userCredential.password;
-        console.log(user);
-        console.log(password);
-
-        // ...
-      })
-      .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        console.log(errorCode, errorMessage);
-        // ..
+  const handleCreateUser = async (auth, email, password, name) => {
+    try {
+      await createUserWithEmailAndPassword(auth, email, password).catch(
+        (error) => {
+          console.log(error);
+        }
+      );
+      await updateProfile(auth.currentUser, { displayName: name }).catch(
+        (error) => {
+          console.log(error);
+        }
+      );
+      await addDoc(collectionRef, {
+        name: name,
+        email: email,
+        highScore: highScore,
+        uid: auth.currentUser.uid,
+      }).catch((error) => {
+        console.log(error);
       });
+    } catch (error) {
+      console.log(error);
+    }
+    setLoggedIn(true);
+    setCreateUser(false);
+    setName(auth.currentUser.displayName);
+    const querySnapshot = await getDocs(collectionRef);
+    querySnapshot.forEach((doc) => {
+      if (doc.data().uid === auth.currentUser.uid) {
+        setHighScore(doc.data().highScore);
+        console.log(doc.id);
+        setcurrentDocId(doc.id);
+      }
+    });
   };
 
-  if (!createUser) {
+  const handleLogin = async (auth, email, password) => {
+    try {
+      await signInWithEmailAndPassword(auth, email, password).catch((error) => {
+        console.log(error);
+      });
+    } catch (error) {
+      console.log(error);
+    }
+
+    // set highscore on firebase user to highscore
+    // get all documents in collection
+    const querySnapshot = await getDocs(collectionRef);
+    querySnapshot.forEach((doc) => {
+      if (doc.data().uid === auth.currentUser.uid) {
+        setHighScore(doc.data().highScore);
+        console.log(doc.id);
+        setcurrentDocId(doc.id);
+      }
+    });
+    setName(auth.currentUser.displayName);
+    setLoggedIn(true);
+    setLogin(false);
+  };
+
+  if (login) {
     return (
       <div className="App">
         <div className="login-container">
           <div className="login-form">
-            <h1 className="login-title">Create Account</h1>
+            <h1 className="login-title">Login</h1>
             <form>
-              <label className="login-label" htmlFor="name">
-                Name
-                <input
-                  type="text"
-                  placeholder="Name"
-                  name="name"
-                  onChange={(e) => setName(e.target.value)}
-                />
-              </label>
-
               <label className="login-label" htmlFor="email">
                 Email
                 <input
@@ -180,6 +229,7 @@ function App() {
                   placeholder="Email"
                   name="email"
                   onChange={(e) => setEmail(e.target.value)}
+                  value={email}
                 />
               </label>
               <label className="login-label" htmlFor="password">
@@ -189,25 +239,98 @@ function App() {
                   placeholder="Password"
                   name="password"
                   onChange={(e) => setPassword(e.target.value)}
+                  value={password}
                 />
               </label>
-
               <button
                 className="login-button"
                 onClick={(e) => {
                   e.preventDefault();
-                  handleCreateUser();
+                  handleLogin(auth, email, password);
                 }}>
-                Create Account
+                Login
               </button>
             </form>
+            <button
+              className="createUser-button"
+              onClick={() => {
+                setLogin(false);
+                setCreateUser(true);
+              }}>
+              Create Account
+            </button>
           </div>
         </div>
       </div>
     );
   }
 
-  if (startGame) {
+  if (createUser) {
+    return (
+      <div className="App">
+        <div className="createUser-container">
+          <div className="createUser-form">
+            <h1 className="createUser-title">Create Account</h1>
+            <form>
+              <label className="createUser-label" htmlFor="name">
+                Name
+                <input
+                  type="text"
+                  placeholder="Name"
+                  name="name"
+                  onChange={(e) => setName(e.target.value)}
+                  value={name}
+                />
+              </label>
+
+              <label className="createUser-label" htmlFor="email">
+                Email
+                <input
+                  type="text"
+                  placeholder="Email"
+                  name="email"
+                  onChange={(e) => setEmail(e.target.value)}
+                  value={email}
+                />
+              </label>
+              <label className="createUser-label" htmlFor="password">
+                Password
+                <input
+                  type="password"
+                  placeholder="Password"
+                  name="password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                />
+              </label>
+
+              <button
+                className="createUser-button"
+                onClick={(e) => {
+                  e.preventDefault();
+                  handleCreateUser(auth, email, password, name);
+                  setName("");
+                  setEmail("");
+                  setPassword("");
+                }}>
+                Create Account
+              </button>
+            </form>
+            <button
+              className="login-button"
+              onClick={() => {
+                setCreateUser(false);
+                setLogin(true);
+              }}>
+              Login
+            </button>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  if (loggedIn) {
     if (isLoading) {
       return (
         <div className="flex-container mt-5">
@@ -241,6 +364,7 @@ function App() {
             lastClickedDog={lastClickedDog}
             setIsLoading={setIsLoading}
             score={score}
+            name={name}
           />
         </div>
       </div>
@@ -264,7 +388,7 @@ function App() {
                 <button
                   className="btn btn-success btn-lg"
                   onClick={() => {
-                    setStartGame(true);
+                    setLoggedIn(true);
                     setIsLoading(true);
                   }}>
                   Start Game

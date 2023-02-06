@@ -79,7 +79,7 @@ function Cards(props) {
               className="alert alert-warning outline"
               style={{ height: "fit-content", width: "fit-content" }}>
               <div className="mt">
-                <CurrentScore score={props.score} />
+                <CurrentScore score={props.score} name={props.name} />
                 <HighScore highScore={props.highScore} />
               </div>
             </div>
