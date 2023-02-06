@@ -175,26 +175,21 @@ function App() {
       return;
     }
     try {
-      await createUserWithEmailAndPassword(auth, email, password).catch(
-        (error) => {
-          console.log(error);
-        }
-      );
-      await updateProfile(auth.currentUser, { displayName: name }).catch(
-        (error) => {
-          console.log(error);
-        }
-      );
+      await createUserWithEmailAndPassword(auth, email, password);
+      await updateProfile(auth.currentUser, { displayName: name });
       await addDoc(collectionRef, {
         name: name,
         email: email,
         highScore: highScore,
         uid: auth.currentUser.uid,
-      }).catch((error) => {
-        console.log(error);
       });
     } catch (error) {
       console.log(error);
+      alert("Email already in use");
+      setEmail("");
+      setPassword("");
+      setName("");
+      return;
     }
     setLoggedIn(true);
     setCreateUser(false);
